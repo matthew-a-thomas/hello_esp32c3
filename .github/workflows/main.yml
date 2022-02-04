@@ -19,3 +19,18 @@ jobs:
       
       - name: Espressif IoT Development Framework (ESP-IDF)
         uses: espressif/esp-idf-ci-action@rust-latest
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: Binaries and flash info
+          path: |
+            build/*.bin
+            build/*.elf
+            build/*.map
+            build/flash_*args
+            build/flasher_args.json
+            build/bootloader/*.bin
+            build/bootloader/*.elf
+            build/bootloader/*.map
+            build/partition_table/*.bin

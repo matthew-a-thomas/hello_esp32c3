@@ -12,32 +12,43 @@
 #include "freertos/task.h"
 #include "esp_system.h"
 #include "esp_spi_flash.h"
+#include "MattTask.h"
+
+#define STACK_SIZE 4096
 
 void app_main(void)
 {
-    printf("Hello world!\n");
+	// Start tasks
+	TaskHandle_t matt_task_handle = NULL;
+	xTaskCreate(run_matt_task, "Matt Task", STACK_SIZE, 0, tskIDLE_PRIORITY, &matt_task_handle);
+	configASSERT(matt_task_handle);
 
-    /* Print chip information */
-    esp_chip_info_t chip_info;
-    esp_chip_info(&chip_info);
-    printf("This is %s chip with %d CPU core(s), WiFi%s%s, ",
-            CONFIG_IDF_TARGET,
-            chip_info.cores,
-            (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
-            (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
+	printf("Hello world!\n");
+	for (;;)
+	{
 
-    printf("silicon revision %d, ", chip_info.revision);
+		/* Print chip information */
+		esp_chip_info_t chip_info;
+		esp_chip_info(&chip_info);
+		printf("This is %s chip with %d CPU core(s), WiFi%s%s, ",
+				CONFIG_IDF_TARGET,
+				chip_info.cores,
+				(chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
+				(chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
 
-    printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
-            (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
+		printf("silicon revision %d, ", chip_info.revision);
 
-    printf("Minimum free heap size: %d bytes\n", esp_get_minimum_free_heap_size());
+		printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
+				(chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
 
-    for (int i = 10; i >= 0; i--) {
-        printf("Restarting in %d seconds...\n", i);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-    printf("Restarting now.\n");
-    fflush(stdout);
+		printf("Minimum free heap size: %d bytes\n", esp_get_minimum_free_heap_size());
+
+		vTaskDelay(10000 / portTICK_PERIOD_MS);
+	}
+
+	// Tear down tasks
+	if (matt_task_handle) {
+		vTaskDelete(matt_task_handle);
+	}
     esp_restart();
 }

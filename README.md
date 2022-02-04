@@ -50,3 +50,25 @@ Please use the following feedback channels:
 * For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
 
 We will get back to you as soon as possible.
+
+## Flash
+
+Download build artifacts.
+
+```
+pip install esptool
+```
+
+```
+esptool write_flash @flash_project_args
+```
+
+## Monitor
+
+Download build artifacts.
+
+```
+idf_monitor.py -p ??? --decode-panic backtrace hello_world.elf
+```
+
+"???" is the port (e.g. COM1 in Windows)

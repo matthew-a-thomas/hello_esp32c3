@@ -44,6 +44,7 @@ void app_main(void)
     repl_config.max_cmdline_length = MAX_COMMAND_LINE_LENGTH;
 
     initialize_nvs();
+	initialise_wifi();
 
     /* Register commands */
     esp_console_register_help_command();

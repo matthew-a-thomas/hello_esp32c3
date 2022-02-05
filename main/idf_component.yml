@@ -1,8 +1,0 @@
-dependencies:
-  idf: ">=4.4"
-  cmd_nvs:
-    path: examples/system/console/advanced/components/cmd_nvs
-    git: https://github.com/espressif/esp-idf.git
-  cmd_system:
-    path: examples/system/console/advanced/components/cmd_system
-    git: https://github.com/espressif/esp-idf.git

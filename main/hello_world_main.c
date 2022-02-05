@@ -9,8 +9,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "esp_system.h"
-#include "esp_log.h"
 #include "esp_console.h"
+#include "esp_event.h"
+#include "esp_log.h"
+#include "esp_netif.h"
 #include "esp_vfs_dev.h"
 #include "driver/uart.h"
 #include "linenoise/linenoise.h"
@@ -20,6 +22,7 @@
 #include "cmd_nvs.h"
 #include "nvs.h"
 #include "nvs_flash.h"
+#include "http.h"
 
 #define MAX_COMMAND_LINE_LENGTH 128
 #define PROMPT_STR "esp32c3"
@@ -37,6 +40,9 @@ static void initialize_nvs(void)
 
 void app_main(void)
 {
+    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+
 	esp_console_repl_t *repl = NULL;
     esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();
     esp_console_dev_uart_config_t uart_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();
@@ -55,4 +61,6 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_console_new_repl_uart(&uart_config, &repl_config, &repl));
 
     ESP_ERROR_CHECK(esp_console_start_repl(repl));
+
+	assert(start_http_server());
 }

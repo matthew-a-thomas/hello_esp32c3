@@ -117,9 +117,7 @@ void initialise_wifi(void)
         return;
     }
 
-    ESP_ERROR_CHECK(esp_netif_init());
     wifi_event_group = xEventGroupCreate();
-    ESP_ERROR_CHECK( esp_event_loop_create_default() );
     netif_ap = esp_netif_create_default_wifi_ap();
     assert(netif_ap);
     netif_sta = esp_netif_create_default_wifi_sta();

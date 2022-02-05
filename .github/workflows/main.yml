@@ -13,24 +13,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    container: espressif/idf-rust:latest
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Espressif IoT Development Framework (ESP-IDF)
-        uses: espressif/esp-idf-ci-action@rust-latest
-      
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2.3.1
+      - name: Set up
+        run: |
+          rustup component add rust-src --toolchain nightly
+      - name: Build
+        run: |
+          cargo build --release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
         with:
-          name: Binaries and flash info
           path: |
-            build/*.bin
-            build/*.elf
-            build/*.map
-            build/flash_*args
-            build/flasher_args.json
-            build/bootloader/*.bin
-            build/bootloader/*.elf
-            build/bootloader/*.map
-            build/partition_table/*.bin
+            target/riscv32imc-esp-espidf/release/hello_esp32c3

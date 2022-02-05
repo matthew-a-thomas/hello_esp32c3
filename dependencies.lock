@@ -1,0 +1,23 @@
+dependencies:
+  cmd_nvs:
+    component_hash: bcb860915a41a8c8d0dbd3e0935d7a6845d8531b72e2916507ba0538e4115bb3
+    source:
+      git: https://github.com/espressif/esp-idf.git
+      path: examples/system/console/advanced/components/cmd_nvs
+      type: git
+    version: 3441dd1e9832a99dbd823e7dc73700169815772f
+  cmd_system:
+    component_hash: 025c317d0d25ffca7de19f833f84d4790702a12143607fbc12e6e338c25597b4
+    source:
+      git: https://github.com/espressif/esp-idf.git
+      path: examples/system/console/advanced/components/cmd_system
+      type: git
+    version: 3441dd1e9832a99dbd823e7dc73700169815772f
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 4.4.0
+manifest_hash: 8875fde39be83bbbeaf2bfecfdcb0d378a1c41619736e413d4a830dcc0b456e0
+target: esp32c3
+version: 1.0.0

@@ -1,0 +1,1 @@
+void register_wifi(void);

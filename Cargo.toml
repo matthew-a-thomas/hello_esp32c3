@@ -19,6 +19,7 @@ esp-idf-svc = "0.36"
 esp-idf-hal = "0.32"
 embedded-svc = "0.16"
 embedded-hal = "0.2"
+# ntp = "0.5"
 
 [build-dependencies]
 embuild = "0.28"

@@ -340,9 +340,9 @@ dependencies = [
 
 [[package]]
 name = "embedded-svc"
-version = "0.16.6"
+version = "0.16.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3d1760ca69c23c6f6c12f7ee017e6bd9d02bfd0b82247463d1fb9de234b04698"
+checksum = "fe4fac5b72ead10824e8383955b319278146ec0e155482d775abab9190acbc74"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -423,9 +423,9 @@ dependencies = [
 
 [[package]]
 name = "esp-idf-hal"
-version = "0.32.8"
+version = "0.32.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "592d9846bab2fa1bb6e2d7912f971b2e202a0f1ca3fc4b4c069641a2074eb248"
+checksum = "412b6de6e11f63b3f8524e943717ec6f9e94b29cefd94870e5f0515f18332103"
 dependencies = [
  "anyhow",
  "embedded-hal 0.2.6",
@@ -438,9 +438,9 @@ dependencies = [
 
 [[package]]
 name = "esp-idf-svc"
-version = "0.36.8"
+version = "0.36.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6463edb2b674b356d15490b5dd7b3b00b766fc36f4d44a79fd8d5cbf8dc5f1e"
+checksum = "2232654c36fa60e6cff574e7ae8e682335221584c46138d3c1cb0b8680b2ff37"
 dependencies = [
  "anyhow",
  "cstr_core",

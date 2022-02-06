@@ -37,16 +37,24 @@ fn main() -> Result<!, Error> {
         println!("SSID?");
         let mut ssid = String::default();
         std_in.read_line(&mut ssid)?;
+        let ssid = ssid.trim().into();
         println!("Password?");
         let mut password = String::default();
         std_in.read_line(&mut password)?;
+        let password = password.trim().into();
 
-        println!("Connecting...");
-        wifi.set_configuration(&embedded_svc::wifi::Configuration::Client(embedded_svc::wifi::ClientConfiguration {
+        println!("Connecting to \"{}\"...", &ssid);
+        match wifi.set_configuration(&embedded_svc::wifi::Configuration::Client(embedded_svc::wifi::ClientConfiguration {
             ssid,
             password,
             ..Default::default()
-        }))?;
+        })) {
+            Ok(()) => {},
+            Err(err) => {
+                eprintln!("{:?}", err);
+                continue;
+            },
+        };
         match wifi.get_status() {
             embedded_svc::wifi::Status(embedded_svc::wifi::ClientStatus::Started(status), _) => {
                 println!("Connected!");
@@ -54,7 +62,7 @@ fn main() -> Result<!, Error> {
                 break;
             },
             _ => {
-                println!("Failed to connect.");
+                eprintln!("Failed to connect.");
             },
         }
 

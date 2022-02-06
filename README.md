@@ -1,3 +1,11 @@
+# hello_esp32c3
+
+Rust on [ESP32-C3-DevKitM-1](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/hw-reference/esp32c3/user-guide-devkitm-1.html).
+
+## Behavior
+
+This application repeatedly scans for WiFi access points.
+
 ## Setup
 
 Install Clang:<br/>
@@ -37,3 +45,11 @@ espmonitor PORT
 ```
 
 Where _PORT_ is the port (e.g. COM1 on Windows)
+
+## More info
+
+https://github.com/esp-rs
+
+https://github.com/esp-rs/esp-idf-template
+
+https://github.com/ivmarkov/rust-esp32-std-demo

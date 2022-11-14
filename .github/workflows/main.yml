@@ -13,17 +13,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: espressif/idf-rust:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up
+      - name: Set up Rust
         run: |
+          rustup install nightly
           rustup component add rust-src --toolchain nightly
+          cargo install ldproxy
+      - uses: actions/checkout@v3
       - name: Build
         run: |
           cargo build --release
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: |
-            target/riscv32imc-esp-espidf/release/hello_esp32c3
+            target/**/release/hello_esp32c3

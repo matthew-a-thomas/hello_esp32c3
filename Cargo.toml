@@ -14,12 +14,12 @@ opt-level = "z"
 native = ["esp-idf-sys/native"]
 
 [dependencies]
-esp-idf-sys = { version = "0.30", features = ["binstart", "std"] }
-esp-idf-svc = "0.36"
-esp-idf-hal = "0.32"
-embedded-svc = "0.16"
+esp-idf-sys = { version = "0.31", features = ["binstart"] }
+esp-idf-svc = "0.42"
+esp-idf-hal = "0.38"
+embedded-svc = "0.22"
 embedded-hal = "0.2"
 
 [build-dependencies]
-embuild = "0.28"
+embuild = "0.30"
 anyhow = "1"
